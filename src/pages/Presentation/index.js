@@ -52,7 +52,7 @@ function Presentation() {
         minHeight="75vh"
         width="100%"
         sx={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `url(https://mejorconsalud.as.com/wp-content/uploads/2021/06/atleta-trail-running.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "top",
           display: "grid",
@@ -72,7 +72,7 @@ function Presentation() {
                 },
               })}
             >
-              Material Kit 2 React{" "}
+              Carreras de salta
             </MKTypography>
             <MKTypography
               variant="body1"
@@ -81,8 +81,7 @@ function Presentation() {
               px={{ xs: 6, lg: 12 }}
               mt={1}
             >
-              Free & Open Source Web UI Kit built over ReactJS &amp; MUI. Join over 1.6 million
-              developers around the world.
+              Un espacio para compartir informacion
             </MKTypography>
           </Grid>
         </Container>
@@ -106,33 +105,6 @@ function Presentation() {
         </Container>
         <Container>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={4}>
-              <FilledInfoCard
-                variant="gradient"
-                color="info"
-                icon="flag"
-                title="Getting Started"
-                description="Check the possible ways of working with our product and the necessary files for building your own project."
-                action={{
-                  type: "external",
-                  route: "https://www.creative-tim.com/learning-lab/react/overview/material-kit/",
-                  label: "Let's start",
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <FilledInfoCard
-                color="info"
-                icon="precision_manufacturing"
-                title="Plugins"
-                description="Get inspiration and have an overview about the plugins that we used to create the Material Kit."
-                action={{
-                  type: "external",
-                  route: "https://www.creative-tim.com/learning-lab/react/overview/datepicker/",
-                  label: "Read more",
-                }}
-              />
-            </Grid>
             <Grid item xs={12} lg={4}>
               <FilledInfoCard
                 color="info"

@@ -29,76 +29,84 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 // Images
 import bgFront from "assets/images/rotating-card-bg-front.jpeg";
 import bgBack from "assets/images/rotating-card-bg-back.jpeg";
+import { db, getDocs, collection } from "../../../firebase.js";
+import { useEffect, useState } from "react";
 
 function Information() {
+  const [races, setRaces] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const newArray = [];
+      const querySnapshot = await getDocs(collection(db, "races"));
+
+      querySnapshot.forEach((doc) => {
+        console.log(doc);
+        newArray.push(doc.data());
+      });
+
+      setRaces(newArray);
+    };
+
+    fetchData();
+    // db.collection("comments").onSnapshot((snapshot) => {
+    //   // Every time a new post is added this code fires
+    //   console.log(snapshot.docs);
+    //   // setComments(
+    //   //   snapshot.docs.map((doc) => ({
+    //   //     id: doc.id,
+    //   //     ...doc.data()
+    //   //   }))
+    //   // );
+    // });
+  }, []);
+
+  // if (races.length === 0) return null;
+  console.log(races);
   return (
-    <MKBox component="section" py={6} my={6}>
-      <Container>
-        <Grid container item xs={11} spacing={3} alignItems="center" sx={{ mx: "auto" }}>
-          <Grid item xs={12} lg={4} sx={{ mx: "auto" }}>
-            <RotatingCard>
-              <RotatingCardFront
-                image={bgFront}
-                icon="touch_app"
-                title={
-                  <>
-                    Feel the
-                    <br />
-                    Material Kit
-                  </>
-                }
-                description="All the MUI components that you need in a development have been re-design with the new look."
-              />
-              <RotatingCardBack
-                image={bgBack}
-                title="Discover More"
-                description="You will save a lot of time going from prototyping to full-functional code because all elements are implemented."
-                action={{
-                  type: "internal",
-                  route: "/sections/page-sections/page-headers",
-                  label: "start with header",
-                }}
-              />
-            </RotatingCard>
-          </Grid>
-          <Grid item xs={12} lg={7} sx={{ ml: "auto" }}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <DefaultInfoCard
-                  icon="content_copy"
-                  title="Full Documentation"
-                  description="Built by developers for developers. Check the foundation and you will find
-                    everything inside our documentation."
-                />
+    <>
+      {races?.map((item) => (
+        <MKBox component="section" py={6} my={6}>
+          <Container>
+            <Grid container item xs={11} spacing={3} alignItems="center" sx={{ mx: "auto" }}>
+              <Grid item xs={12} lg={4} sx={{ mx: "auto" }}>
+                <RotatingCard>
+                  <RotatingCardFront
+                    image={item.image}
+                    icon="touch_app"
+                    title={<>{item.name}</>}
+                    description="All the MUI components that you need in a development have been re-design with the new look."
+                  />
+                  <RotatingCardBack
+                    image={bgBack}
+                    title="Discover More"
+                    description="You will save a lot of time going from prototyping to full-functional code because all elements are implemented."
+                    action={{
+                      type: "internal",
+                      route: "/sections/page-sections/page-headers",
+                      label: "start with header",
+                    }}
+                  />
+                </RotatingCard>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <DefaultInfoCard
-                  icon="flip_to_front"
-                  title="MUI Ready"
-                  description="The world's most popular react components library for building user interfaces."
-                />
+              <Grid item xs={12} lg={7} sx={{ ml: "auto" }}>
+                <Grid container spacing={3}>
+                  {item.details?.map((it) => (
+                    <Grid item xs={12} md={6}>
+                      <DefaultInfoCard
+                        icon="content_copy"
+                        title={it.distance}
+                        description={it.price}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
               </Grid>
             </Grid>
-            <Grid container spacing={3} sx={{ mt: { xs: 0, md: 6 } }}>
-              <Grid item xs={12} md={6}>
-                <DefaultInfoCard
-                  icon="price_change"
-                  title="Save Time & Money"
-                  description="Creating your design from scratch with dedicated designers can be very expensive. Start with our Design System."
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <DefaultInfoCard
-                  icon="devices"
-                  title="Fully Responsive"
-                  description="Regardless of the screen size, the website content will naturally fit the given resolution."
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Container>
-    </MKBox>
+          </Container>
+        </MKBox>
+      ))}
+    </>
   );
 }
 

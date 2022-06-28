@@ -22,22 +22,25 @@ import Icon from "@mui/material/Icon";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import { Repeat } from "@mui/icons-material";
 
-function RotatingCardFront({ color, image, icon, title, description }) {
+function RotatingCardFront({ color, image, icon, description }) {
   return (
     <MKBox
       display="flex"
       justifyContent="center"
       alignContent="center"
-      borderRadius="lg"
       coloredShadow={color}
       width="100%"
+      height="100%"
       position="relative"
       zIndex={2}
       sx={{
         backgroundImage: () => `url(${image})`,
         backgroundSize: "cover",
         backfaceVisibility: "hidden",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <MKBox py={12} px={3} textAlign="center" lineHeight={1}>
@@ -46,9 +49,7 @@ function RotatingCardFront({ color, image, icon, title, description }) {
             {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
           </MKTypography>
         )}
-        <MKTypography variant="h3" color="white" gutterBottom>
-          {title}
-        </MKTypography>
+        <MKTypography variant="h3" color="white" gutterBottom></MKTypography>
         <MKTypography variant="body2" color="white" opacity={0.8}>
           {description}
         </MKTypography>

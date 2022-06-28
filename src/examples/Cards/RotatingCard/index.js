@@ -37,9 +37,6 @@ function RotatingCard({ children }) {
           backgroundColor: "transparent",
           boxShadow: "none",
           position: "relative",
-          transform: rotate ? "rotateY(180deg)" : "rotateY(0)",
-          transformStyle: "preserve-3d",
-          transition: "all 0.8s cubic-bezier(0.34, 1.45, 0.7, 1)",
         }}
       >
         {children}

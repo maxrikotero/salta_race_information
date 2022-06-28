@@ -93,12 +93,7 @@ export default {
       coloredShadows.light,
       0.4
     )}`,
-    dark: `${boxShadow([0, 4], [20, 0], black.main, 0.14)}, ${boxShadow(
-      [0, 7],
-      [10, -5],
-      coloredShadows.dark,
-      0.4
-    )}`,
+
     white: `${boxShadow([0, 4], [20, 0], white.main, 0.14)}, ${boxShadow(
       [0, 7],
       [10, -5],
